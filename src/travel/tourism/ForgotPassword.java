@@ -7,30 +7,26 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class ForgotPassword extends JFrame implements ActionListener {
 
-	JButton jbback, jbcreate;
-    JTextField tfusername, tfname, tfans;
-    JPasswordField jpassword;
+	JButton jbback, jbsearch, jbretrieve;
+    JTextField tfusername, tfname, tfans, tfpassword;
     JComboBox<String> ques;
+    ResultSet resultSet = null;
+    String getname,getpassword;
 
     ForgotPassword() {
+        super.setTitle("Forgot Password");
         setSize(900, 450);
         setLocation(350, 200);
         setLayout(null);
+        setResizable(false);
+
 
         getContentPane().setBackground(Color.white);
 
@@ -49,6 +45,15 @@ public class ForgotPassword extends JFrame implements ActionListener {
         tfusername.setBorder(BorderFactory.createEmptyBorder());
         p1.add(tfusername);
 
+        jbsearch = new JButton("Search");
+        jbsearch.setBounds(450, 50, 120, 30);
+        jbsearch.setForeground(new Color(131, 193, 233));
+        jbsearch.setBackground(Color.white);
+        jbsearch.setFont(new Font("San_serif", Font.BOLD, 17));
+        jbsearch.setBorder(null);
+        p1.add(jbsearch);
+        jbsearch.addActionListener(this);
+
         JLabel jlname = new JLabel("Name");
         jlname.setBounds(50, 100, 150, 30);
         jlname.setFont(new Font("San_serif", Font.BOLD, 17));
@@ -56,47 +61,48 @@ public class ForgotPassword extends JFrame implements ActionListener {
         tfname = new JTextField();
         tfname.setBounds(210, 100, 220, 30);
         tfname.setBorder(BorderFactory.createEmptyBorder());
+        tfname.setEditable(false);
         p1.add(tfname);
 
-        JLabel jlpassword = new JLabel("Password");
-        jlpassword.setBounds(50, 150, 150, 30);
-        jlpassword.setFont(new Font("San_serif", Font.BOLD, 17));
-        p1.add(jlpassword);
-        jpassword = new JPasswordField();
-        jpassword.setBounds(210, 150, 220, 30);
-        jpassword.setBorder(null);
-        p1.add(jpassword);
-
         JLabel jlques = new JLabel("Security Question");
-        jlques.setBounds(50, 200, 150, 30);
+        jlques.setBounds(50, 150, 150, 30);
         jlques.setFont(new Font("San_serif", Font.BOLD, 17));
         p1.add(jlques);
         String items[] = {"What is your mother's name?", "What is your first pet's name?", "What is your favorite color?"};
         ques = new JComboBox<>(items);
-        ques.setBounds(210, 200, 220, 30);
+        ques.setBounds(210, 150, 220, 30);
         ques.setPreferredSize(new Dimension(200, 25));
         p1.add(ques);
 
         JLabel jlans = new JLabel("Answer");
-        jlans.setBounds(50, 250, 150, 30);
+        jlans.setBounds(50, 200, 150, 30);
         jlans.setFont(new Font("San_serif", Font.BOLD, 17));
         p1.add(jlans);
         tfans = new JTextField();
-        tfans.setBounds(210, 250, 220, 30);
+        tfans.setBounds(210, 200, 220, 30);
         tfans.setBorder(null);
         p1.add(tfans);
 
-        jbcreate = new JButton("Create");
-        jbcreate.setBounds(100, 320, 120, 30);
-        jbcreate.setForeground(new Color(131, 193, 233));
-        jbcreate.setBackground(Color.white);
-        jbcreate.setFont(new Font("San_serif", Font.BOLD, 17));
-        jbcreate.setBorder(null);
-        p1.add(jbcreate);
-        jbcreate.addActionListener(this);
+        jbretrieve = new JButton("Retrieve");
+        jbretrieve.setBounds(450, 200, 120, 30);
+        jbretrieve.setForeground(new Color(131, 193, 233));
+        jbretrieve.setBackground(Color.white);
+        jbretrieve.setFont(new Font("San_serif", Font.BOLD, 17));
+        jbretrieve.setBorder(null);
+        p1.add(jbretrieve);
+        jbretrieve.addActionListener(this);
+
+        JLabel jlpassword = new JLabel("Password");
+        jlpassword.setBounds(50, 250, 150, 30);
+        jlpassword.setFont(new Font("San_serif", Font.BOLD, 17));
+        p1.add(jlpassword);
+        tfpassword = new JTextField();
+        tfpassword.setBounds(210, 250, 220, 30);
+        tfpassword.setBorder(null);
+        p1.add(tfpassword);
 
         jbback = new JButton("Back");
-        jbback.setBounds(300, 320, 120, 30);
+        jbback.setBounds(190, 320, 120, 30);
         jbback.setForeground(new Color(131, 193, 233));
         jbback.setBackground(Color.white);
         jbback.setFont(new Font("San_serif", Font.BOLD, 17));
@@ -116,34 +122,49 @@ public class ForgotPassword extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         try {
-            connect con = new connect();
+            Connect con = new Connect();
 
-            if (ae.getSource() == jbcreate) {
+            if (ae.getSource() == jbsearch) {
                 String username = tfusername.getText();
-                String name = tfname.getText();
-                String password = new String(jpassword.getPassword()); // Use getPassword() for JPasswordField
-                String security = (String) ques.getSelectedItem();
-                String ans = tfans.getText();
 
-                PreparedStatement ps = con.conn.prepareStatement("INSERT INTO signup VALUES (?, ?, ?, ?, ?);");
-
+                String query = "SELECT NAME FROM signup WHERE username=?; ";
+                PreparedStatement ps = con.connect.prepareStatement(query);
                 ps.setString(1, username);
-                ps.setString(2, name);
-                ps.setString(3, password);
-                ps.setString(4, security);
-                ps.setString(5, ans);
+                System.out.println();
+                resultSet = ps.executeQuery();
+                if (resultSet.next()) {
+                    getname = resultSet.getString("NAME");
+                    tfname.setText(getname);
 
-                int executeUpdate = ps.executeUpdate();
-
-                if (executeUpdate != 0) {
-                    JOptionPane.showMessageDialog(null, "Account created Successfully");
-                    setVisible(false);
-                    new Login();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error");
                 }
 
-            } else if (ae.getSource() == jbback) {
+            }
+            else if (ae.getSource() == jbretrieve){
+                String username = tfusername.getText();
+                String name = tfname.getText();
+                String security = (String)ques.getSelectedItem();
+                String ans = tfans.getText();
+
+
+                String query = "SELECT password FROM signup WHERE username=? AND name=? AND question=? AND answer=?";
+                PreparedStatement ps = con.connect.prepareStatement(query);
+                ps.setString(1, username);
+                ps.setString(2, name);
+                ps.setString(3, security);
+                ps.setString(4, ans);
+                resultSet = ps.executeQuery();
+                if (resultSet.next()) {
+                    getpassword = resultSet.getString("password");
+                    tfpassword.setText(getpassword);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
+
+
+            }else if (ae.getSource() == jbback) {
                 setVisible(false);
                 new Login();
             }

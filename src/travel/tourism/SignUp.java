@@ -31,6 +31,7 @@ public class SignUp extends JFrame implements ActionListener {
         setSize(900, 450);
         setLocation(350, 200);
         setLayout(null);
+        setResizable(false);
 
         getContentPane().setBackground(Color.white);
 
@@ -116,7 +117,7 @@ public class SignUp extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         try {
-            connect con = new connect();
+            Connect con = new Connect();
 
             if (ae.getSource() == jbcreate) {
                 String username = tfusername.getText();
@@ -125,7 +126,7 @@ public class SignUp extends JFrame implements ActionListener {
                 String security = (String) ques.getSelectedItem();
                 String ans = tfans.getText();
 
-                PreparedStatement ps = con.conn.prepareStatement("INSERT INTO signup VALUES (?, ?, ?, ?, ?);");
+                PreparedStatement ps = con.connect.prepareStatement("INSERT INTO signup VALUES (?, ?, ?, ?, ?);");
 
                 ps.setString(1, username);
                 ps.setString(2, name);

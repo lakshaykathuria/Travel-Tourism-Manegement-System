@@ -5,16 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class connect {
+public class Connect {
 
-    Connection conn;
+    Connection connect;
     Statement statement;
-    connect(){
+    Connect(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelmanagement", "root","root");
-            statement = conn.createStatement();
-            if (conn != null) {
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelmanagement", "root","root");
+            statement = connect.createStatement();
+            if (connect != null) {
                 System.out.println("Connected to the database!");
             }
         } catch (SQLException e) {
@@ -26,7 +26,7 @@ public class connect {
 		}
     }
     public static void main(String[] args) {
-    	new connect();
+    	new Connect();
     }
 
 }

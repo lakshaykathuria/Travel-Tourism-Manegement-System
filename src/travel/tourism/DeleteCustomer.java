@@ -1,2 +1,7 @@
-package travel.tourism;public class DeleteCustomer {
+package travel.tourism;
+
+import javax.swing.*;
+
+public class DeleteCustomer extends JFrame {
+
 }

@@ -1,2 +1,7 @@
-package travel.tourism;public class Destination {
+package travel.tourism;
+
+import javax.swing.*;
+
+public class Destination extends JFrame {
+
 }

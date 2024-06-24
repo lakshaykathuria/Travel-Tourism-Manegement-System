@@ -1,2 +1,7 @@
-package travel.tourism;public class CheckHotels {
+package travel.tourism;
+
+import javax.swing.*;
+
+public class CheckHotels extends JFrame {
+
 }

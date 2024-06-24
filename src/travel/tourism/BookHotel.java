@@ -1,2 +1,9 @@
-package travel.tourism;public class BookHotel {
+package travel.tourism;
+
+import javax.swing.*;
+
+public class BookHotel extends JFrame {
+    BookHotel(String title){
+
+    }
 }

@@ -5,24 +5,27 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.channels.ScatteringByteChannel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener {
     
     JButton jblogin, jbsignup, jbforgot;
+    JTextField tfusername;
+    JPasswordField tfpassword;
+    Connect con = new Connect();
+    ResultSet resultSet = null;
+    String name;
+
 
     Login() {
         setSize(800, 400);
         setLocation(400, 200);
         setLayout(null);
+        setResizable(false);
         getContentPane().setBackground(new Color(211, 211, 211));
         
         JPanel p1 = new JPanel();
@@ -43,7 +46,7 @@ public class Login extends JFrame implements ActionListener {
         jlusername.setFont(new Font("San_serif", Font.PLAIN, 20));
         add(jlusername);
         
-        JTextField tfusername = new JTextField();
+        tfusername = new JTextField();
         tfusername.setBounds(400, 85, 300, 30);
         tfusername.setBorder(BorderFactory.createEmptyBorder());
         add(tfusername);
@@ -53,7 +56,7 @@ public class Login extends JFrame implements ActionListener {
         jlpassword.setFont(new Font("San_serif", Font.PLAIN, 20));
         add(jlpassword);
         
-        JPasswordField tfpassword = new JPasswordField();
+        tfpassword = new JPasswordField();
         tfpassword.setBounds(400, 155, 300, 30);
         tfpassword.setBorder(BorderFactory.createEmptyBorder());
         add(tfpassword);
@@ -82,12 +85,36 @@ public class Login extends JFrame implements ActionListener {
         add(jbforgot);
         jbforgot.addActionListener(this);
 
-        setVisible(true);   
+        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == jblogin) {
-            // Handle login
+            try {
+                String username = tfusername.getText();
+                String password = new String(tfpassword.getPassword());
+
+                String query = "SELECT * FROM signup WHERE username=? AND password=?";
+                PreparedStatement ps = con.connect.prepareStatement(query);
+                ps.setString(1, username);
+                ps.setString(2, password);
+
+                resultSet = ps.executeQuery();
+//                name= resultSet.getString("NAME");
+//                System.out.println(name);
+                if (resultSet.next()) {
+                    System.out.println("Login successful");
+                    name= resultSet.getString("NAME");
+                    setVisible(false); // Hide login frame
+                    SwingUtilities.invokeLater(() -> new Loading(name).setVisible(true));
+                } else {
+                    System.out.println("Invalid login credentials");
+                    JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } else if (ae.getSource() == jbsignup) {
             setVisible(false);
             new SignUp();
