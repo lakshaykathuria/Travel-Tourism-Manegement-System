@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c969eefe-93da-44c2-88b4-a17ac884eafe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/About.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/AddCustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/BookHotel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/BookPackage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/CheckHotels.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/CheckPackage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/DeleteCustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/Destination.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/Home.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/UpdateCustomer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/ViewBookedHotel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/ViewCustomers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/travel/tourism/ViewPackage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bin/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/travel/tourism/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/travel/tourism/Login.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/travel/tourism/SignUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/travel/tourism/SignUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/travel/tourism/Splash.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/travel/tourism/connect.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/travel/tourism/connect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/travel/tourism/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/travel/tourism/ForgotPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/travel/tourism/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/travel/tourism/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/travel/tourism/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/travel/tourism/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/travel/tourism/Splash.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/travel/tourism/connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/travel/tourism/connect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +28,12 @@
     &quot;assignee&quot;: &quot;lakshaykathuria&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:lakshaykathuria/Travel-Tourism-Manegement-System.git&quot;,
-    &quot;accountId&quot;: &quot;1bf94834-2985-48e8-a6bc-0779e277b947&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lakshaykathuria/Travel-Tourism-Manegement-System.git",
+    "accountId": "37ea08e7-b328-43f5-b4aa-741843c9dbba"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -68,20 +42,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ForgotPassword.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Home.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Loading.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SignUp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Splash.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ForgotPassword.executor": "Run",
+    "Application.Home.executor": "Run",
+    "Application.Loading.executor": "Run",
+    "Application.Login.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.SignUp.executor": "Run",
+    "Application.Splash.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="travel.tourism" />
